@@ -1,4 +1,4 @@
-package `ch-3`.tunahg
+package ch3.tunahg
 
 import java.math.BigDecimal
 
@@ -60,7 +60,7 @@ fun elem(num: Int, list: List<Int>): Boolean = when {
 fun takeSequence(n: Int, sequence: Sequence<Int>): List<Int> = when {
     sequence.none() -> listOf()
     n == 0 -> listOf()
-    else -> listOf(sequence.first()) + takeSequence(n - 1, sequence)
+    else -> listOf(sequence.first()) + takeSequence(n - 1, sequence.drop(1))
 }
 
 fun repeat(n: Int): Sequence<Int> = sequenceOf(n) + { repeat(n) }
