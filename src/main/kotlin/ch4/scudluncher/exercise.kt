@@ -27,9 +27,11 @@ fun main() {
 //    println(composed(someList))
 
     val condition = { a: Int -> a < 3 }
-    val listOfNumbers = listOf(1, 2, 3, 4, 5)
+//    val listOfNumbers = listOf(1, 2, 3, 4, 5)
 
-    println(listOfNumbers.takeWhile(condition, listOf()))
+//    println(listOfNumbers.takeWhile(condition, listOf()))
+
+    println(generateSequence(1) { it + 1 }.takeWhile(condition, listOf()))
 }
 
 class PartialFunction<P, R>(
@@ -100,6 +102,12 @@ tailrec fun <T> List<T>.takeWhile(condition: (T) -> Boolean, acc: List<T>): List
     }
 }
 
+tailrec fun <T> Sequence<T>.takeWhile(condition: (T) -> Boolean, acc: List<T>): List<T> {
+    return if (condition(this.first()).not()) acc
+    else {
+        this.drop(1).takeWhile(condition, acc + listOf(this.first()))
+    }
+}
 
 
 
