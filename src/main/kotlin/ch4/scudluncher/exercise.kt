@@ -93,12 +93,10 @@ infix fun <F, G, R> ((F) -> R).compose(g: (G) -> F): (G) -> R {
 }
 
 //fun <T> List<T>.takeWhile(condition: (T) -> Boolean) = takeWhile(condition, this)
-//fail
-tailrec fun <T> List<T>.takeWhile(condition: (T) -> Boolean, acc:List<T>): List<T> {
+tailrec fun <T> List<T>.takeWhile(condition: (T) -> Boolean, acc: List<T>): List<T> {
     return if (this.isEmpty() || condition(head()).not()) acc
     else {
-        acc
-        tail().takeWhile(condition, this.drop(1))
+        tail().takeWhile(condition, acc + listOf(head()))
     }
 }
 
