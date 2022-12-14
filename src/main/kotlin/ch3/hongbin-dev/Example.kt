@@ -1,4 +1,4 @@
-package `ch-3`.hongbin
+package ch3.`hongbin-dev`
 
 import java.util.Collections.swap
 import kotlin.math.sqrt
